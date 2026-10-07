@@ -17,7 +17,7 @@ class GameEngine:
         self.grid_height = height // self.cell_size
 
         self.snake = Snake(self.grid_width // 2, self.grid_height // 2, self.cell_size)
-        self.food = Food(self.grid_width, self.grid_height, self.cell_size)
+        self.food = Food(self.grid_width, self.grid_height, self.cell_size, self.snake.body)
 
         self.score = 0
         self.font = pygame.font.SysFont("Arial", 30)
@@ -64,7 +64,7 @@ class GameEngine:
             self.game_over = True
             return
 
-        if self.snake.head_rect().colliderect(self.food.rect()):
+        if self.food.x is not None and self.food.y is not None and self.snake.body[0] == (self.food.x, self.food.y):
             self.snake.grow()
             self.score += 1
             self.food.respawn(self.snake.body)
