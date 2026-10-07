@@ -1,4 +1,7 @@
 import pygame
+
+# Match pygame mixer output to the generated 16-bit mono sounds.
+pygame.mixer.pre_init(frequency=44100, size=-16, channels=1, buffer=512)
 from game.game_engine import GameEngine
 
 # Initialize pygame/Start application

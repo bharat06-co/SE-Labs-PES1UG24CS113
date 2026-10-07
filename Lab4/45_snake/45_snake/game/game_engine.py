@@ -1,6 +1,7 @@
 import pygame
 from .snake import Snake
 from .food import Food
+from .sounds import Sounds
 
 # Game Engine
 
@@ -29,6 +30,7 @@ class GameEngine:
 
         self.game_over = False
         self.quit_requested = False
+        self.sounds = Sounds()
 
         self.score_font = pygame.font.SysFont("Arial", 30)
         self.game_over_font = pygame.font.SysFont("Arial", 64, bold=True)
@@ -84,7 +86,11 @@ class GameEngine:
         pass
 
     def end_game(self):
+        if self.game_over:
+            return
+
         self.game_over = True
+        self.sounds.play_game_over()
 
     def start_new_game(self, difficulty_name):
         self.difficulty_name = difficulty_name
@@ -118,6 +124,7 @@ class GameEngine:
         ):
             self.snake.grow()
             self.score += 1
+            self.sounds.play_eat()
             self.food.respawn(self.snake.body)
 
     def _blit_centered(self, screen, text, font, color, y):
