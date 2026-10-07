@@ -10,6 +10,7 @@ class Sounds:
         self.sample_rate = 44100
         self.eat_sound = None
         self.game_over_sound = None
+        self.channels = 1
 
         try:
             if not pygame.mixer.get_init():
@@ -21,10 +22,11 @@ class Sounds:
                 )
 
             mixer_frequency, mixer_format, mixer_channels = pygame.mixer.get_init()
-            if mixer_frequency <= 0 or mixer_format != -16 or mixer_channels != 1:
+            if mixer_frequency <= 0 or mixer_format != -16:
                 return
 
             self.sample_rate = mixer_frequency
+            self.channels = mixer_channels
             self.eat_sound = pygame.mixer.Sound(
                 buffer=self._make_tone_sequence(
                     [(520, 0.09), (760, 0.11)],
@@ -60,7 +62,7 @@ class Sounds:
                 * amplitude
                 * math.sin(2 * math.pi * frequency * i / self.sample_rate)
             )
-            frames.append(struct.pack("<h", value))
+            frames.append(struct.pack("<h", value) * self.channels)
 
         return b"".join(frames)
 
@@ -71,7 +73,7 @@ class Sounds:
         for frequency, duration in notes:
             audio.extend(self._make_tone(frequency, duration))
             if gap_samples:
-                audio.extend(b"\x00\x00" * gap_samples)
+                audio.extend(b"\x00\x00" * gap_samples * self.channels)
 
         return bytes(audio)
 
