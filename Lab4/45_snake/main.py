@@ -35,6 +35,9 @@ def main():
         engine.render(SCREEN)
 
         pygame.display.flip()
+
+        if engine.quit_requested:
+            running = False
         clock.tick(FPS)
 
     pygame.quit()
