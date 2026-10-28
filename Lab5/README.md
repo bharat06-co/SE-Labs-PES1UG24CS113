@@ -1,51 +1,43 @@
-# Lab 5: Static Code Analysis — Parking Lot System
+# Lab 5 — Static Code Analysis: Parking Lot System
 
-**Your file:** `parking_lot_system.py`
+**Name:** Bharat V Bhat  
+**SRN:** PES1UG24CS113  
+**Section:** B  
+**Assigned source:** https://github.com/SETAPESU26/L5_51_parking_lot_system
 
-Follow the lab handout for the full instructions.
+## Work completed
 
-## About the program
+Analyzed the assigned original `parking_lot_system.py` with Pylint, Bandit, and Flake8, documented and fixed more than four issues, and reran the three analyzers. Security fixes include removing unsafe `eval()` and shell execution, replacing MD5 with SHA-256, and generating PINs using `secrets`.
 
-An automated parking lot and slot manager. It parks vehicles by license plate, frees occupied slots, computes dynamic surge rates, and exports parking manifests.
+| Tool | Before | After |
+|---|---|---|
+| Pylint | 4.10/10 | **10.00/10** |
+| Bandit | 5 findings (2 high, 1 medium, 2 low) | **0 findings** |
+| Flake8 | 10 violations | **0 violations** |
 
-The code works, but only just. It has quality, style and security problems of the kind Pylint, Flake8 and Bandit are built to find.
-
-## What to do
-
-1. **Run it first** and read the output carefully:
-   ```bash
-   python parking_lot_system.py
-   ```
-   It asks one question. Press Enter to use the default, then try a few inputs of your own. Not every problem in this file is something a tool will flag, so pay attention to output that looks wrong.
-
-2. **Install the tools:**
-   ```bash
-   pip install pylint bandit flake8
-   ```
-
-3. **Run the analysis** and save the reports:
-   ```bash
-   pylint parking_lot_system.py > pylint_report.txt
-   bandit -r parking_lot_system.py > bandit_report.txt
-   flake8 parking_lot_system.py > flake8_report.txt
-   ```
-
-4. **Document the issues** in `issues.md` using this table (at least 4 rows, high and medium severity first):
-
-   | Issue | Type | Line(s) | Description | Fix Approach |
-   |-------|------|---------|-------------|--------------|
-   | ... | ... | ... | ... | ... |
-
-5. **Fix the code.** Fix at least 4 of the issues you documented, then rerun all three tools to confirm they are gone. Repeat until you are satisfied. The program should still do its job when you are done.
-
-6. **Reflect.** Answer the four reflection questions from the handout in `reflection.md`.
+The six genuine tool-generated outputs are saved under `reports/before/` and `reports/after/`. An empty Flake8 AFTER report indicates no violations. The BEFORE Bandit report has a PowerShell diagnostic preamble, but the security findings and summary are present.
 
 ## Deliverables
 
-1. `parking_lot_system.py`: your cleaned version, with at least 4 issues fixed.
-2. `issues.md`: the completed issue table.
-3. `reflection.md`: your answers to the reflection questions.
+- `parking_lot_system.py`: corrected Python program
+- `issues.md`: identified issue table, original line numbers and fixes
+- `reflection.md`: four suggested reflection answers
+- `reports/before/`: Pylint, Bandit and Flake8 reports on original code
+- `reports/after/`: Pylint, Bandit and Flake8 reports on corrected code
 
-**Target:** aim for a Pylint score above 9.5 on your final file. A perfect 10.00/10 is very good.
+The required three independent fix commits are `59a03c7` (Bandit), `1d7ca66` (Pylint) and `a33b657` (Flake8). A baseline and documentation commits are also retained.
 
-Be ready to explain the bugs you found and how you fixed them. You may be called on to present.
+## Execution
+
+From this folder, with Python and the analysis tools installed:
+
+```powershell
+python parking_lot_system.py
+python -m pylint parking_lot_system.py
+python -m bandit parking_lot_system.py
+python -m flake8 parking_lot_system.py
+```
+
+The corrected demonstration ran successfully, printing a surge fee of 45.0, one vacant slot, and total collections of 60.0, along with other program output. `parking_manifest.txt` is generated at runtime and is not a submission requirement.
+
+**Reflection note:** The supplied three-page handout asks for reflection answers but does not actually print the questions. The four questions in `reflection.md` are explicitly suggested questions; confirm any separately issued official wording with the instructor.

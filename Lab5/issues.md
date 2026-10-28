@@ -5,7 +5,7 @@
 **Section:** B  
 **Repository:** https://github.com/SETAPESU26/L5_51_parking_lot_system
 
-These findings come from **manual source inspection**, not an executed Pylint/Bandit/Flake8 scan. The tool references are *likely rules* to verify against the generated reports. Line numbers refer to the **original** supplied Python file. High-impact items come first; official tool severity must be checked in the real reports.
+These findings were initially identified by manual inspection and then checked against the **actual Pylint, Bandit, and Flake8 BEFORE reports** in `reports/before/`. Line numbers refer to the **original** supplied Python file. The reported Bandit severities are: B324 and B605 **High**, B307 **Medium**, B110 and B311 **Low**. Additional manual findings are explicitly design/logic observations rather than claims that a tool detected them.
 
 | Issue | Type / expected tool | Original line(s) | Description | Fix approach |
 |---|---|---:|---|---|
@@ -27,4 +27,4 @@ These findings come from **manual source inspection**, not an executed Pylint/Ba
 
 ## Outcome
 
-The corrected script addresses more than four issues and continues to demonstrate booking, releasing, availability, 1.5x surge fees, PIN generation, and manifest export. It now writes JSON and exposes a numeric `surge_multiplier` argument instead of an expression string. **Pylint's score and final Bandit/Flake8 results have not been measured** in this environment; execute `python run_analysis.py` to verify and attach the official reports.
+The corrected script addresses more than four issues and continues to demonstrate booking, releasing, availability, 1.5x surge fees, PIN generation, and manifest export. It now writes JSON and exposes a numeric `surge_multiplier` argument instead of an expression string. **Verified results:** Pylint **4.10/10 → 10.00/10**; Bandit **5 → 0 findings**; Flake8 **10 → 0 violations**. The tool-generated before/after reports are committed under `reports/` and the corrected demo ran successfully on Python 3.13.0.
