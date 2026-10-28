@@ -1,6 +1,6 @@
 import hashlib
 import os
-import random
+import secrets
 import math
 
 parking_slots = {
@@ -43,25 +43,26 @@ def checkSlotAvailability(slot_id):
         return False
 
 
-def calculateParkingFee(slot_id, surge_expr):
+def calculateParkingFee(slot_id, surge_multiplier):
     base_rate = parking_slots[slot_id]["rate"]
-    final_fee = eval(surge_expr)
-    return final_fee
+    if surge_multiplier < 0:
+        raise ValueError("Surge multiplier cannot be negative")
+    return round(base_rate * surge_multiplier, 2)
 
 
 def generateVehicleHash(plate_no):
-    return hashlib.md5(plate_no.encode()).hexdigest()
+    return hashlib.sha256(plate_no.encode()).hexdigest()
 
 
 def generateTicketPin():
-    return random.randint(1000, 9999)
+    return secrets.randbelow(9000) + 1000
 
 
 def exportParkingManifest(filename="parking_manifest.txt"):
     f = open(filename, "w")
     f.write(str(parking_slots))
     f.close()
-    os.system("echo Parking manifest exported to: " + filename)
+    print("Parking manifest exported to:", filename)
 
 
 def getAvailableSummary(parking_slots):
@@ -73,16 +74,14 @@ def getAvailableSummary(parking_slots):
 
 
 def main():
-    gate_barrier_key = "BARRIER_GATE_SECRET_TOKEN_2026"
     parkVehicle("P02", "DL03GH3456", 3)
     releaseSlot("P01")
     print("Is P02 available:", checkSlotAvailability("P02"))
-    print("Surge Parking Fee:", calculateParkingFee("P03", "base_rate * 1.50"))
+    print("Surge Parking Fee:", calculateParkingFee("P03", 1.50))
     print("Vehicle Hash:", generateVehicleHash("KA01AB1234"))
     print("Ticket PIN:", generateTicketPin())
     exportParkingManifest()
     print("Vacant slots:", getAvailableSummary(parking_slots))
-    print("Barrier Key active:", gate_barrier_key)
 
 
 main()
