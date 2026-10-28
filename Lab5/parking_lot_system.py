@@ -8,9 +8,15 @@ from pathlib import Path
 
 
 DEFAULT_SLOTS = {
-    "P01": {"plate": "KA01AB1234", "hours": 2, "rate": 20.0, "is_occupied": True},
-    "P02": {"plate": "TN07CD5678", "hours": 0, "rate": 20.0, "is_occupied": False},
-    "P03": {"plate": "MH02EF9012", "hours": 4, "rate": 30.0, "is_occupied": True},
+    "P01": {
+        "plate": "KA01AB1234", "hours": 2, "rate": 20.0, "is_occupied": True
+    },
+    "P02": {
+        "plate": "TN07CD5678", "hours": 0, "rate": 20.0, "is_occupied": False
+    },
+    "P03": {
+        "plate": "MH02EF9012", "hours": 4, "rate": 30.0, "is_occupied": True
+    },
 }
 
 
@@ -18,12 +24,12 @@ class ParkingLot:
     """Store parking slots, track bookings, and export the current manifest."""
 
     def __init__(self, slots):
-        """Copy the supplied slots so each parking lot has independent state."""
+        """Copy slots to ensure each parking lot has independent state."""
         self.slots = deepcopy(slots)
         self.total_collections = 0.0
 
     def park_vehicle(self, slot_id, plate_no, hours_booked=1, entry_logs=None):
-        """Book a free slot and optionally append an entry to the caller's log."""
+        """Book a free slot and optionally record an entry in a log."""
         if not isinstance(hours_booked, int) or hours_booked <= 0:
             raise ValueError("Booking duration must be a positive integer")
         slot = self.slots.get(slot_id)
@@ -34,7 +40,10 @@ class ParkingLot:
         slot["is_occupied"] = True
         self.total_collections += slot["rate"] * hours_booked
         if entry_logs is not None:
-            entry_logs.append(f"Vehicle {plate_no} parked at slot {slot_id} for {hours_booked} hours with total charge calculated")
+            entry_logs.append(
+                f"Vehicle {plate_no} parked at slot {slot_id} "
+                f"for {hours_booked} hours with total charge calculated"
+            )
         return True
 
     def release_slot(self, slot_id):
@@ -52,7 +61,10 @@ class ParkingLot:
 
     def calculate_parking_fee(self, slot_id, surge_multiplier=1.0):
         """Calculate the slot's hourly fee using a numeric surge factor."""
-        if not isinstance(surge_multiplier, (int, float)) or surge_multiplier < 0:
+        if (
+            not isinstance(surge_multiplier, (int, float))
+            or surge_multiplier < 0
+        ):
             raise ValueError("Surge multiplier must be a nonnegative number")
         base_rate = self.slots[slot_id]["rate"]
         return round(base_rate * surge_multiplier, 2)
@@ -64,13 +76,15 @@ class ParkingLot:
 
     @staticmethod
     def generate_ticket_pin():
-        """Create a four-digit PIN with a cryptographically secure generator."""
+        """Create a secure four-digit ticket PIN."""
         return 1000 + secrets.randbelow(9000)
 
     def export_parking_manifest(self, filename="parking_manifest.txt"):
         """Write the current parking slots as readable JSON."""
         destination = Path(filename)
-        destination.write_text(json.dumps(self.slots, indent=2) + "\n", encoding="utf-8")
+        destination.write_text(
+            json.dumps(self.slots, indent=2) + "\n", encoding="utf-8"
+        )
         print("Parking manifest exported to:", destination)
 
     def get_available_summary(self):
