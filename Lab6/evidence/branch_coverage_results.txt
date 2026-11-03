@@ -1,0 +1,10 @@
+Lab 6 - branch coverage verification (executed locally on source from assigned repository)
+$ python -m coverage run --branch --source=self_storage -m pytest -q BranchCoverageTest_self_storage_application.py
+..............................                                           [100%]
+30 passed in 0.07s
+$ python -m coverage report -m
+Name              Stmts   Miss Branch BrPart  Cover   Missing
+-------------------------------------------------------------
+self_storage.py      37      0     26      0   100%
+-------------------------------------------------------------
+TOTAL                37      0     26      0   100%
