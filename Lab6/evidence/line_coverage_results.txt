@@ -1,0 +1,10 @@
+Lab 6 - line coverage verification (executed locally on source from assigned repository)
+$ python -m coverage run --source=self_storage -m pytest -q CodeCoverageTest_self_storage_application.py
+...........                                                              [100%]
+11 passed in 0.04s
+$ python -m coverage report -m
+Name              Stmts   Miss  Cover   Missing
+-----------------------------------------------
+self_storage.py      37      0   100%
+-----------------------------------------------
+TOTAL                37      0   100%
