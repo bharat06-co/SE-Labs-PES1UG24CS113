@@ -1,0 +1,299 @@
+FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF..                                    [100%]
+=================================== FAILURES ===================================
+___________________ test_parse_rental_rejects_invalid[None] ____________________
+test_validation_regression.py:21: in test_parse_rental_rejects_invalid
+    assert parse_rental(value) is None
+           ^^^^^^^^^^^^^^^^^^^
+processor.py:2: in parse_rental
+    unit, months = text.split(':')
+                   ^^^^^^^^^^
+E   AttributeError: 'NoneType' object has no attribute 'split'
+_____________________ test_parse_rental_rejects_invalid[] ______________________
+test_validation_regression.py:21: in test_parse_rental_rejects_invalid
+    assert parse_rental(value) is None
+           ^^^^^^^^^^^^^^^^^^^
+processor.py:2: in parse_rental
+    unit, months = text.split(':')
+    ^^^^^^^^^^^^
+E   ValueError: not enough values to unpack (expected 2, got 1)
+__________________ test_parse_rental_rejects_invalid[medium] ___________________
+test_validation_regression.py:21: in test_parse_rental_rejects_invalid
+    assert parse_rental(value) is None
+           ^^^^^^^^^^^^^^^^^^^
+processor.py:2: in parse_rental
+    unit, months = text.split(':')
+    ^^^^^^^^^^^^
+E   ValueError: not enough values to unpack (expected 2, got 1)
+____________________ test_parse_rental_rejects_invalid[:5] _____________________
+test_validation_regression.py:21: in test_parse_rental_rejects_invalid
+    assert parse_rental(value) is None
+E   AssertionError: assert ('', 5.0) is None
+E    +  where ('', 5.0) = parse_rental(':5')
+__________________ test_parse_rental_rejects_invalid[medium:] __________________
+test_validation_regression.py:21: in test_parse_rental_rejects_invalid
+    assert parse_rental(value) is None
+           ^^^^^^^^^^^^^^^^^^^
+processor.py:3: in parse_rental
+    return unit.strip().title(), float(months)
+                                 ^^^^^^^^^^^^^
+E   ValueError: could not convert string to float: ''
+________________ test_parse_rental_rejects_invalid[medium:abc] _________________
+test_validation_regression.py:21: in test_parse_rental_rejects_invalid
+    assert parse_rental(value) is None
+           ^^^^^^^^^^^^^^^^^^^
+processor.py:3: in parse_rental
+    return unit.strip().title(), float(months)
+                                 ^^^^^^^^^^^^^
+E   ValueError: could not convert string to float: 'abc'
+_________________ test_parse_rental_rejects_invalid[medium:-2] _________________
+test_validation_regression.py:21: in test_parse_rental_rejects_invalid
+    assert parse_rental(value) is None
+E   AssertionError: assert ('Medium', -2.0) is None
+E    +  where ('Medium', -2.0) = parse_rental('medium:-2')
+________________ test_parse_rental_rejects_invalid[medium:NaN] _________________
+test_validation_regression.py:21: in test_parse_rental_rejects_invalid
+    assert parse_rental(value) is None
+E   AssertionError: assert ('Medium', nan) is None
+E    +  where ('Medium', nan) = parse_rental('medium:NaN')
+________________ test_parse_rental_rejects_invalid[medium:inf] _________________
+test_validation_regression.py:21: in test_parse_rental_rejects_invalid
+    assert parse_rental(value) is None
+E   AssertionError: assert ('Medium', inf) is None
+E    +  where ('Medium', inf) = parse_rental('medium:inf')
+______________ test_parse_rental_rejects_invalid[medium:2:extra] _______________
+test_validation_regression.py:21: in test_parse_rental_rejects_invalid
+    assert parse_rental(value) is None
+           ^^^^^^^^^^^^^^^^^^^
+processor.py:2: in parse_rental
+    unit, months = text.split(':')
+    ^^^^^^^^^^^^
+E   ValueError: too many values to unpack (expected 2)
+____________________ test_parse_rental_rejects_invalid[::] _____________________
+test_validation_regression.py:21: in test_parse_rental_rejects_invalid
+    assert parse_rental(value) is None
+           ^^^^^^^^^^^^^^^^^^^
+processor.py:2: in parse_rental
+    unit, months = text.split(':')
+    ^^^^^^^^^^^^
+E   ValueError: too many values to unpack (expected 2)
+___________________ test_parse_rental_rejects_invalid[  :  ] ___________________
+test_validation_regression.py:21: in test_parse_rental_rejects_invalid
+    assert parse_rental(value) is None
+           ^^^^^^^^^^^^^^^^^^^
+processor.py:3: in parse_rental
+    return unit.strip().title(), float(months)
+                                 ^^^^^^^^^^^^^
+E   ValueError: could not convert string to float: '  '
+_________________ test_duration_average_rejects_invalid[None] __________________
+test_validation_regression.py:28: in test_duration_average_rejects_invalid
+    assert duration_average(value) is None
+           ^^^^^^^^^^^^^^^^^^^^^^^
+processor.py:6: in duration_average
+    values = [int(r) for r in months_csv.split(',')]
+                              ^^^^^^^^^^^^^^^^
+E   AttributeError: 'NoneType' object has no attribute 'split'
+___________________ test_duration_average_rejects_invalid[] ____________________
+test_validation_regression.py:28: in test_duration_average_rejects_invalid
+    assert duration_average(value) is None
+           ^^^^^^^^^^^^^^^^^^^^^^^
+processor.py:6: in duration_average
+    values = [int(r) for r in months_csv.split(',')]
+              ^^^^^^
+E   ValueError: invalid literal for int() with base 10: ''
+___________________ test_duration_average_rejects_invalid[,] ___________________
+test_validation_regression.py:28: in test_duration_average_rejects_invalid
+    assert duration_average(value) is None
+           ^^^^^^^^^^^^^^^^^^^^^^^
+processor.py:6: in duration_average
+    values = [int(r) for r in months_csv.split(',')]
+              ^^^^^^
+E   ValueError: invalid literal for int() with base 10: ''
+_________________ test_duration_average_rejects_invalid[3,,6] __________________
+test_validation_regression.py:28: in test_duration_average_rejects_invalid
+    assert duration_average(value) is None
+           ^^^^^^^^^^^^^^^^^^^^^^^
+processor.py:6: in duration_average
+    values = [int(r) for r in months_csv.split(',')]
+              ^^^^^^
+E   ValueError: invalid literal for int() with base 10: ''
+__________________ test_duration_average_rejects_invalid[3,] ___________________
+test_validation_regression.py:28: in test_duration_average_rejects_invalid
+    assert duration_average(value) is None
+           ^^^^^^^^^^^^^^^^^^^^^^^
+processor.py:6: in duration_average
+    values = [int(r) for r in months_csv.split(',')]
+              ^^^^^^
+E   ValueError: invalid literal for int() with base 10: ''
+__________________ test_duration_average_rejects_invalid[x,y] __________________
+test_validation_regression.py:28: in test_duration_average_rejects_invalid
+    assert duration_average(value) is None
+           ^^^^^^^^^^^^^^^^^^^^^^^
+processor.py:6: in duration_average
+    values = [int(r) for r in months_csv.split(',')]
+              ^^^^^^
+E   ValueError: invalid literal for int() with base 10: 'x'
+_________________ test_duration_average_rejects_invalid[-1,2] __________________
+test_validation_regression.py:28: in test_duration_average_rejects_invalid
+    assert duration_average(value) is None
+E   AssertionError: assert 0 is None
+E    +  where 0 = duration_average('-1,2')
+_________________ test_duration_average_rejects_invalid[3,2.5] _________________
+test_validation_regression.py:28: in test_duration_average_rejects_invalid
+    assert duration_average(value) is None
+           ^^^^^^^^^^^^^^^^^^^^^^^
+processor.py:6: in duration_average
+    values = [int(r) for r in months_csv.split(',')]
+              ^^^^^^
+E   ValueError: invalid literal for int() with base 10: '2.5'
+__________________ test_duration_average_rejects_invalid[3|6] __________________
+test_validation_regression.py:28: in test_duration_average_rejects_invalid
+    assert duration_average(value) is None
+           ^^^^^^^^^^^^^^^^^^^^^^^
+processor.py:6: in duration_average
+    values = [int(r) for r in months_csv.split(',')]
+              ^^^^^^
+E   ValueError: invalid literal for int() with base 10: '3|6'
+__________________ test_duration_average_rejects_invalid[  ] ___________________
+test_validation_regression.py:28: in test_duration_average_rejects_invalid
+    assert duration_average(value) is None
+           ^^^^^^^^^^^^^^^^^^^^^^^
+processor.py:6: in duration_average
+    values = [int(r) for r in months_csv.split(',')]
+              ^^^^^^
+E   ValueError: invalid literal for int() with base 10: '  '
+___________________ test_payable_rent_rejects_invalid[None] ____________________
+test_validation_regression.py:36: in test_payable_rent_rejects_invalid
+    assert payable_rent(value) is None
+           ^^^^^^^^^^^^^^^^^^^
+processor.py:10: in payable_rent
+    rent, discount = text.split('|')
+                     ^^^^^^^^^^
+E   AttributeError: 'NoneType' object has no attribute 'split'
+_____________________ test_payable_rent_rejects_invalid[] ______________________
+test_validation_regression.py:36: in test_payable_rent_rejects_invalid
+    assert payable_rent(value) is None
+           ^^^^^^^^^^^^^^^^^^^
+processor.py:10: in payable_rent
+    rent, discount = text.split('|')
+    ^^^^^^^^^^^^^^
+E   ValueError: not enough values to unpack (expected 2, got 1)
+___________________ test_payable_rent_rejects_invalid[2400] ____________________
+test_validation_regression.py:36: in test_payable_rent_rejects_invalid
+    assert payable_rent(value) is None
+           ^^^^^^^^^^^^^^^^^^^
+processor.py:10: in payable_rent
+    rent, discount = text.split('|')
+    ^^^^^^^^^^^^^^
+E   ValueError: not enough values to unpack (expected 2, got 1)
+___________________ test_payable_rent_rejects_invalid[|200] ____________________
+test_validation_regression.py:36: in test_payable_rent_rejects_invalid
+    assert payable_rent(value) is None
+           ^^^^^^^^^^^^^^^^^^^
+processor.py:11: in payable_rent
+    total = float(rent) * 1.18 - float(discount)
+            ^^^^^^^^^^^
+E   ValueError: could not convert string to float: ''
+___________________ test_payable_rent_rejects_invalid[200|] ____________________
+test_validation_regression.py:36: in test_payable_rent_rejects_invalid
+    assert payable_rent(value) is None
+           ^^^^^^^^^^^^^^^^^^^
+processor.py:11: in payable_rent
+    total = float(rent) * 1.18 - float(discount)
+                                 ^^^^^^^^^^^^^^^
+E   ValueError: could not convert string to float: ''
+___________________ test_payable_rent_rejects_invalid[abc|2] ___________________
+test_validation_regression.py:36: in test_payable_rent_rejects_invalid
+    assert payable_rent(value) is None
+           ^^^^^^^^^^^^^^^^^^^
+processor.py:11: in payable_rent
+    total = float(rent) * 1.18 - float(discount)
+            ^^^^^^^^^^^
+E   ValueError: could not convert string to float: 'abc'
+___________________ test_payable_rent_rejects_invalid[-1|5] ____________________
+test_validation_regression.py:36: in test_payable_rent_rejects_invalid
+    assert payable_rent(value) is None
+E   AssertionError: assert 0 is None
+E    +  where 0 = payable_rent('-1|5')
+__________________ test_payable_rent_rejects_invalid[100|-1] ___________________
+test_validation_regression.py:36: in test_payable_rent_rejects_invalid
+    assert payable_rent(value) is None
+E   AssertionError: assert 119.0 is None
+E    +  where 119.0 = payable_rent('100|-1')
+___________________ test_payable_rent_rejects_invalid[nan|2] ___________________
+test_validation_regression.py:36: in test_payable_rent_rejects_invalid
+    assert payable_rent(value) is None
+E   AssertionError: assert nan is None
+E    +  where nan = payable_rent('nan|2')
+___________________ test_payable_rent_rejects_invalid[inf|0] ___________________
+test_validation_regression.py:36: in test_payable_rent_rejects_invalid
+    assert payable_rent(value) is None
+E   AssertionError: assert inf is None
+E    +  where inf = payable_rent('inf|0')
+_________________ test_payable_rent_rejects_invalid[1.7e308|0] _________________
+test_validation_regression.py:36: in test_payable_rent_rejects_invalid
+    assert payable_rent(value) is None
+E   AssertionError: assert inf is None
+E    +  where inf = payable_rent('1.7e308|0')
+________________ test_payable_rent_rejects_invalid[2400|200|1] _________________
+test_validation_regression.py:36: in test_payable_rent_rejects_invalid
+    assert payable_rent(value) is None
+           ^^^^^^^^^^^^^^^^^^^
+processor.py:10: in payable_rent
+    rent, discount = text.split('|')
+    ^^^^^^^^^^^^^^
+E   ValueError: too many values to unpack (expected 2)
+___________________ test_payable_rent_rejects_invalid[  |  ] ___________________
+test_validation_regression.py:36: in test_payable_rent_rejects_invalid
+    assert payable_rent(value) is None
+           ^^^^^^^^^^^^^^^^^^^
+processor.py:11: in payable_rent
+    total = float(rent) * 1.18 - float(discount)
+            ^^^^^^^^^^^
+E   ValueError: could not convert string to float: '  '
+=========================== short test summary info ============================
+FAILED test_validation_regression.py::test_parse_rental_rejects_invalid[None] - AttributeError: 'NoneType' object has no attribute 'split'
+FAILED test_validation_regression.py::test_parse_rental_rejects_invalid[] - ValueError: not enough values to unpack (expected 2, got 1)
+FAILED test_validation_regression.py::test_parse_rental_rejects_invalid[medium] - ValueError: not enough values to unpack (expected 2, got 1)
+FAILED test_validation_regression.py::test_parse_rental_rejects_invalid[:5] - AssertionError: assert ('', 5.0) is None
+ +  where ('', 5.0) = parse_rental(':5')
+FAILED test_validation_regression.py::test_parse_rental_rejects_invalid[medium:] - ValueError: could not convert string to float: ''
+FAILED test_validation_regression.py::test_parse_rental_rejects_invalid[medium:abc] - ValueError: could not convert string to float: 'abc'
+FAILED test_validation_regression.py::test_parse_rental_rejects_invalid[medium:-2] - AssertionError: assert ('Medium', -2.0) is None
+ +  where ('Medium', -2.0) = parse_rental('medium:-2')
+FAILED test_validation_regression.py::test_parse_rental_rejects_invalid[medium:NaN] - AssertionError: assert ('Medium', nan) is None
+ +  where ('Medium', nan) = parse_rental('medium:NaN')
+FAILED test_validation_regression.py::test_parse_rental_rejects_invalid[medium:inf] - AssertionError: assert ('Medium', inf) is None
+ +  where ('Medium', inf) = parse_rental('medium:inf')
+FAILED test_validation_regression.py::test_parse_rental_rejects_invalid[medium:2:extra] - ValueError: too many values to unpack (expected 2)
+FAILED test_validation_regression.py::test_parse_rental_rejects_invalid[::] - ValueError: too many values to unpack (expected 2)
+FAILED test_validation_regression.py::test_parse_rental_rejects_invalid[  :  ] - ValueError: could not convert string to float: '  '
+FAILED test_validation_regression.py::test_duration_average_rejects_invalid[None] - AttributeError: 'NoneType' object has no attribute 'split'
+FAILED test_validation_regression.py::test_duration_average_rejects_invalid[] - ValueError: invalid literal for int() with base 10: ''
+FAILED test_validation_regression.py::test_duration_average_rejects_invalid[,] - ValueError: invalid literal for int() with base 10: ''
+FAILED test_validation_regression.py::test_duration_average_rejects_invalid[3,,6] - ValueError: invalid literal for int() with base 10: ''
+FAILED test_validation_regression.py::test_duration_average_rejects_invalid[3,] - ValueError: invalid literal for int() with base 10: ''
+FAILED test_validation_regression.py::test_duration_average_rejects_invalid[x,y] - ValueError: invalid literal for int() with base 10: 'x'
+FAILED test_validation_regression.py::test_duration_average_rejects_invalid[-1,2] - AssertionError: assert 0 is None
+ +  where 0 = duration_average('-1,2')
+FAILED test_validation_regression.py::test_duration_average_rejects_invalid[3,2.5] - ValueError: invalid literal for int() with base 10: '2.5'
+FAILED test_validation_regression.py::test_duration_average_rejects_invalid[3|6] - ValueError: invalid literal for int() with base 10: '3|6'
+FAILED test_validation_regression.py::test_duration_average_rejects_invalid[  ] - ValueError: invalid literal for int() with base 10: '  '
+FAILED test_validation_regression.py::test_payable_rent_rejects_invalid[None] - AttributeError: 'NoneType' object has no attribute 'split'
+FAILED test_validation_regression.py::test_payable_rent_rejects_invalid[] - ValueError: not enough values to unpack (expected 2, got 1)
+FAILED test_validation_regression.py::test_payable_rent_rejects_invalid[2400] - ValueError: not enough values to unpack (expected 2, got 1)
+FAILED test_validation_regression.py::test_payable_rent_rejects_invalid[|200] - ValueError: could not convert string to float: ''
+FAILED test_validation_regression.py::test_payable_rent_rejects_invalid[200|] - ValueError: could not convert string to float: ''
+FAILED test_validation_regression.py::test_payable_rent_rejects_invalid[abc|2] - ValueError: could not convert string to float: 'abc'
+FAILED test_validation_regression.py::test_payable_rent_rejects_invalid[-1|5] - AssertionError: assert 0 is None
+ +  where 0 = payable_rent('-1|5')
+FAILED test_validation_regression.py::test_payable_rent_rejects_invalid[100|-1] - AssertionError: assert 119.0 is None
+ +  where 119.0 = payable_rent('100|-1')
+FAILED test_validation_regression.py::test_payable_rent_rejects_invalid[nan|2] - AssertionError: assert nan is None
+ +  where nan = payable_rent('nan|2')
+FAILED test_validation_regression.py::test_payable_rent_rejects_invalid[inf|0] - AssertionError: assert inf is None
+ +  where inf = payable_rent('inf|0')
+FAILED test_validation_regression.py::test_payable_rent_rejects_invalid[1.7e308|0] - AssertionError: assert inf is None
+ +  where inf = payable_rent('1.7e308|0')
+FAILED test_validation_regression.py::test_payable_rent_rejects_invalid[2400|200|1] - ValueError: too many values to unpack (expected 2)
+FAILED test_validation_regression.py::test_payable_rent_rejects_invalid[  |  ] - ValueError: could not convert string to float: '  '
+35 failed, 2 passed in 0.18s

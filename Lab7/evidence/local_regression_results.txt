@@ -1,0 +1,5 @@
+Original - 28 malformed-input cases: 19 crashes; 9 invalid-value acceptances
+Original - 900 generated valid-input checks passed
+Corrected - 28 malformed-input cases: 0 crashes; 0 invalid-value acceptances
+Corrected - 900 generated valid-input checks passed
+Independent local regression verification: PASS

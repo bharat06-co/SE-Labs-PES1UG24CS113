@@ -1,0 +1,10 @@
+Lab 7 - Original application: discovered invalid-input behavior
+parse_rental(None) -> AttributeError: 'NoneType' object has no attribute 'split'  [CRASH]
+parse_rental('medium:abc') -> ValueError: could not convert string to float: 'abc'  [CRASH]
+parse_rental('small:-2') -> ('Small', -2.0)  [INVALID ACCEPTED]
+duration_average('') -> ValueError: invalid literal for int() with base 10: ''  [CRASH]
+duration_average('3,,6') -> ValueError: invalid literal for int() with base 10: ''  [CRASH]
+duration_average('-1,2') -> 0  [INVALID ACCEPTED]
+payable_rent('abc|200') -> ValueError: could not convert string to float: 'abc'  [CRASH]
+payable_rent('100|-1') -> 119.0  [INVALID ACCEPTED]
+payable_rent('NaN|0') -> nan  [INVALID ACCEPTED]

@@ -1,0 +1,8 @@
+﻿==== Running parse_rental ====
+Enter unit:months (e.g. medium:6): Unit and Months: ('Medium', 6.0)
+
+==== Running duration_average ====
+Enter rental months as CSV (e.g. 3,6,12): Average Duration: 7
+
+==== Running payable_rent ====
+Enter rent|discount (e.g. 2400|200): Payable Rent: 2632.0
