@@ -43,7 +43,3 @@ py processor.py
 py -m pytest -q test_processor.py
 py -m pytest -q test_validation_regression.py
 ```
-
-## Submission
-
-Push the `Lab7` folder to your individual repository, then submit the single consolidated PDF through the course Google Form. A GitHub Actions workflow is also included at `.github/workflows/lab7-fuzz.yml`.
